@@ -1,0 +1,26 @@
+name: Publish Workers to Cloudflare
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Setup nodejs env
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Setup cache conf
+        uses: actions/cache@v3
+
+      - name: Deploy workers
+        uses: cloudflare/wrangler-action@2.0.0
+        with:
+          apiToken: ${{ secrets.CF_API_TOKEN }}
