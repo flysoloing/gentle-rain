@@ -17,12 +17,12 @@ jobs:
         with:
           node-version: 18
 
-      - name: Setup cache conf
-        uses: actions/cache@v3
-        with:
-          # path: ~/.npm
-          path: '**/node_modules'
-          key: ${{ runner.os }}-modules-${{ hashFiles('**/package.json') }}
+#      - name: Setup cache conf
+#        uses: actions/cache@v3
+#        with:
+#          # path: ~/.npm
+#          path: '**/node_modules'
+#          key: ${{ runner.os }}-modules-${{ hashFiles('**/package.json') }}
 
       - name: Deploy workers
         uses: cloudflare/wrangler-action@2.0.0
