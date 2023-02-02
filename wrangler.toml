@@ -1,0 +1,8 @@
+name = "gentle-rain"
+main = "src/index.js"
+compatibility_date = "2022-12-20"
+
+account_id = "8232125ce8ea42c46f11e2ded2a8e422"
+workers_dev = true
+route = ""
+zone_id = ""
