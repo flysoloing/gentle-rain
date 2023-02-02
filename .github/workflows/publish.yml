@@ -29,4 +29,9 @@ jobs:
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           # accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          command: whoami
+          preCommands: echo "*** pre command ***"
+          postCommands: |
+            echo "*** post commands ***"
+            echo "******"
+          # command: whoami
+          # environment: 'production'
