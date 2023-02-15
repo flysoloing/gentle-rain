@@ -26,12 +26,13 @@ jobs:
 
       - name: Deploy workers
         uses: cloudflare/wrangler-action@2.0.0
+        env:
+          USER: root
         with:
           apiToken: ${{ secrets.CF_API_TOKEN }}
           # accountId: ${{ secrets.CF_ACCOUNT_ID }}
-          preCommands: echo "*** pre command ***"
+          preCommands: echo "*** publish start ***"
           postCommands: |
-            echo "*** post commands ***"
-            echo "******"
+            echo "*** publish complete ***"
           # command: whoami
-          # environment: 'production'
+          environment: 'production'
