@@ -1,11 +1,17 @@
 {
   "name": "gentle-rain",
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "author": "flysoloing",
+  "license": "MIT",
   "devDependencies": {
+    "webpack": "^5.75.0",
+    "webpack-cli": "^5.0.1",
     "wrangler": "2.6.2"
   },
   "private": true,
   "scripts": {
+    "build": "webpack",
+    "server": "node src/server.js",
     "start": "wrangler dev",
     "deploy": "wrangler publish"
   }

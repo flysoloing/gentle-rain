@@ -7,8 +7,10 @@
  *
  * Learn more at https://developers.cloudflare.com/workers/
  */
+import {whitelistUrls} from './config.js';
+
 export default {
-	async fetch(request, env, ctx) {
+    async fetch(request, env, ctx) {
         //处理OPTIONS请求
         async function handleOptions(request) {
             if (request.headers.get('Origin') !== null
@@ -57,13 +59,13 @@ export default {
             }
 
             const ua = request.headers.get('User-Agent');
-            //console.log(ua);
+            //console.log('User-Agent', ua);
             const ip = request.headers.get('CF-Connecting-IP');
-            //console.log(ip);
+            //console.log('CF-Connecting-IP', ip);
             const rf = request.headers.get('Referer');
-            //console.log(rf);
+            //console.log('Referer', rf);
             const or = request.headers.get('Origin');
-            //console.log(or);
+            //console.log('Origin', or);
 
             let sitePVKeyPrefix = 'sitePV:';
             let siteUVKeyPrefix = 'siteUV:';
@@ -72,7 +74,6 @@ export default {
 
             let sitePVKey = sitePVKeyPrefix + or.normalize();
             let sitePVNum = await env.VIEWS.get(sitePVKey);
-            //console.log('sitePVNum', sitePVNum);
             if(sitePVNum) {
                 sitePVNum = Number(sitePVNum) + 1;
             } else {
@@ -151,6 +152,28 @@ export default {
             return new Response(resDataStr, resInit);
         }
 
+        //构建失败应答数据
+        function buildFailureRes(status, statusText) {
+            return new Response(null, {
+                'status': status,
+                'statusText': statusText
+            });
+        }
+
+        //TODO 增加dispatch方法，适用于后续多个服务的请求分发
+        //console.log('whitelistUrls', whitelistUrls);
+
+        const origin = request.headers.get('Origin');
+        if(!whitelistUrls.includes(origin)) {
+            return buildFailureRes(403, 'Domain Not Allowed');
+        }
+
+        const url = new URL(request.url);
+        const pathname = url.pathname;
+        if(pathname != '/count') {
+            return buildFailureRes(404, 'Not Found');
+        }
+
         //请求处理逻辑
         const method = request.method.toUpperCase();
         //预处理
@@ -160,10 +183,7 @@ export default {
         if(method === 'PUT') {
             return count(request);
         }
-        console.log(method + 'Method Not Allowed');
-        return new Response(null, {
-            status: 405,
-            statusText: 'Method Not Allowed',
-        });
-	}
+
+        return buildFailureRes(405, 'Method Not Allowed');
+    }
 };
