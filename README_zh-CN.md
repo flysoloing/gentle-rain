@@ -2,7 +2,10 @@
 
 # Gentle Rain
 
-[![release][release-shield]][release-url][![watchers][watchers-shield]][watchers-url][![forks][forks-shield]][forks-url][![stars][stars-shield]][stars-url]
+[![release][release-shield]][release-url]
+[![watchers][watchers-shield]][watchers-url]
+[![forks][forks-shield]][forks-url]
+[![stars][stars-shield]][stars-url]
 
 ## 简介
 
@@ -114,11 +117,9 @@ Gentle Rain主要功能包括两部分：一部分是需要部署到Cloudflare W
 3. 修改`wrangler.toml`文件，包括account_id，zone_id，route和kv_namespaces的id属性。
 
    ```toml
-   ...
    # Cloudflare账号的Account ID
    account_id = "8232125ce8ea42c46f11e2ded2a8e422"
    
-   ...
    # Cloudflare账号的Zone ID
    zone_id = "3b45eda9555aecf6c720d5538c8393fa"
    # 路由规则，默认为”*“
@@ -128,7 +129,7 @@ Gentle Rain主要功能包括两部分：一部分是需要部署到Cloudflare W
        { binding = "VIEWS", id = "66a0161821d84473a12bb45904177b08" }
    ]
    ```
-
+   
 4. 完成上述修改后，提交代码即可触发自动发布流程。
 5. 发布成功后，进入Cloudflare Workers后台，点击进入刚刚发布的gentle-rain-production，点击预览地址进行验证，通常格式为https://SERVICE_NAME.YOUR_SUBDOMAIN.workers.dev/。当然，如果你在Cloudflare上激活了自己的域名，也可以通过添加自定义域名的方式来使用，例如https://pv.crudman.cn/。
 

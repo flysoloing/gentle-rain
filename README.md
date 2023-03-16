@@ -2,7 +2,10 @@
 
 # Gentle Rain
 
-[![release][release-shield]][release-url][![watchers][watchers-shield]][watchers-url][![forks][forks-shield]][forks-url][![stars][stars-shield]][stars-url]
+[![release][release-shield]][release-url]
+[![watchers][watchers-shield]][watchers-url]
+[![forks][forks-shield]][forks-url]
+[![stars][stars-shield]][stars-url]
 
 ## Introduction
 
@@ -114,11 +117,9 @@ The automatic release process is based on GitHub Workflows, and is triggered by 
 3. Modify the `wrangler.toml` file, including the `account_id`, `zone_id`, `route`, and `id` attributes of kv_namespaces.
 
    ```toml
-   ...
    # Replace With Your Account ID
    account_id = "8232125ce8ea42c46f11e2ded2a8e422"
    
-   ...
    # Replace With Your Zone ID
    zone_id = "3b45eda9555aecf6c720d5538c8393fa"
    # Replace With Your Route Rule, Default is ”*“
@@ -128,7 +129,7 @@ The automatic release process is based on GitHub Workflows, and is triggered by 
        { binding = "VIEWS", id = "66a0161821d84473a12bb45904177b08" }
    ]
    ```
-
+   
 4. After you have made the above changes, commit the code to trigger the automatic publishing process.
 5. After the release is successful, go to the Cloudflare Workers page, click to enter the just-released `gentle-rain-production`, and click the preview address to verify, usually in the format https://SERVICE_NAME.YOUR_SUBDOMAIN.workers.dev/. Of course, if you have activated your own domain name on Cloudflare, you can also use it by adding a custom domain name, such as https://pv.crudman.cn/.
 
