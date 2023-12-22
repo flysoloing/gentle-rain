@@ -79,7 +79,7 @@ export default {
             } else {
                 sitePVNum = 1;
             }
-            env.VIEWS.put(sitePVKey, sitePVNum.toString());
+            await env.VIEWS.put(sitePVKey, sitePVNum.toString());
             data.sitePV = sitePVNum;
 
             if(countType === '10') {
@@ -110,7 +110,7 @@ export default {
                     } else {
                         pagePVNum = 1;
                     }
-                    env.VIEWS.put(pagePVKey, pagePVNum.toString());
+                    await env.VIEWS.put(pagePVKey, pagePVNum.toString());
                     let tmpObj = {
                         url: urls[0],
                         pagePV: pagePVNum
